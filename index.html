@@ -6,34 +6,14 @@
     <title>Beratungs-Chatbot Landingpage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        #chatbox::-webkit-scrollbar {
-            width: 8px;
-        }
-        #chatbox::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 4px;
-        }
-        #chatbox::-webkit-scrollbar-thumb {
-            background: #60a5fa;
-            border-radius: 4px;
-        }
-        #chatbox::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
-        .message {
-            animation: fadeIn 0.3s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        #chat-window {
-            transition: all 0.3s ease-in-out;
-            transform: translateY(100%);
-        }
-        #chat-window.open {
-            transform: translateY(0);
-        }
+        #chatbox::-webkit-scrollbar { width: 8px; }
+        #chatbox::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+        #chatbox::-webkit-scrollbar-thumb { background: #60a5fa; border-radius: 4px; }
+        #chatbox::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+        .message { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #chat-window { transition: all 0.3s ease-in-out; transform: translateY(100%); }
+        #chat-window.open { transform: translateY(0); }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -59,7 +39,7 @@
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-2">Schnelle Antworten</h3>
-                    <p class="text-gray-600">Erhalten Sie sofortige Antworten auf Ihre Fragen, ohne Wartezeit.</p>
+                    <p class="text-gray-600">Erhalte sofortige Antworten auf deine Fragen, ohne Wartezeit.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-2">Einfache Bedienung</h3>
@@ -70,14 +50,8 @@
     </section>
 
     <!-- Chat Button -->
-    <button
-        id="chat-toggle"
-        class="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition transform hover:scale-105 focus:outline-none"
-        aria-label="Chat öffnen"
-    >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-        </svg>
+    <button id="chat-toggle" class="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition transform hover:scale-105 focus:outline-none" aria-label="Chat öffnen">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
     </button>
 
     <!-- Chat Window -->
@@ -85,25 +59,13 @@
         <div class="flex justify-between items-center p-4 border-b border-gray-200">
             <h3 class="text-xl font-bold text-gray-800">Beratungs-Chatbot</h3>
             <button id="chat-close" class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
         <div id="chatbox" class="h-80 p-4 overflow-y-auto bg-gray-50"></div>
         <div class="p-4 border-t border-gray-200 flex gap-2">
-            <input
-                id="input"
-                type="text"
-                placeholder="Schreibe hier..."
-                class="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-            />
-            <button
-                onclick="sendMessage()"
-                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
-            >
-                Senden
-            </button>
+            <input id="input" type="text" placeholder="Schreibe hier..." class="flex-1 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition" />
+            <button onclick="sendMessage()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Senden</button>
         </div>
     </div>
 
@@ -121,26 +83,9 @@
             const chatWindow = document.getElementById('chat-window');
             const chatClose = document.getElementById('chat-close');
 
-            chatToggle.addEventListener('click', () => {
-                chatWindow.classList.toggle('hidden');
-                chatWindow.classList.toggle('open');
-                if (!chatWindow.classList.contains('hidden')) {
-                    document.getElementById('input').focus();
-                }
-            });
-
-            chatToggleHero.addEventListener('click', () => {
-                chatWindow.classList.toggle('hidden');
-                chatWindow.classList.toggle('open');
-                if (!chatWindow.classList.contains('hidden')) {
-                    document.getElementById('input').focus();
-                }
-            });
-
-            chatClose.addEventListener('click', () => {
-                chatWindow.classList.add('hidden');
-                chatWindow.classList.remove('open');
-            });
+            chatToggle.addEventListener('click', () => { chatWindow.classList.toggle('hidden'); chatWindow.classList.toggle('open'); if (!chatWindow.classList.contains('hidden')) document.getElementById('input').focus(); });
+            chatToggleHero.addEventListener('click', () => { chatWindow.classList.toggle('hidden'); chatWindow.classList.toggle('open'); if (!chatWindow.classList.contains('hidden')) document.getElementById('input').focus(); });
+            chatClose.addEventListener('click', () => { chatWindow.classList.add('hidden'); chatWindow.classList.remove('open'); });
 
             async function sendMessage() {
                 const input = document.getElementById('input');
@@ -150,12 +95,8 @@
                 const chatbox = document.getElementById('chatbox');
                 chatbox.innerHTML += `<div class="message user bg-blue-100 p-3 rounded-lg mb-2 ml-auto max-w-xs"><b>Du:</b> ${text}</div>`;
 
-                // Platzhalter-Antwort, da kein Backend verfügbar ist
-                chatbox.innerHTML += `<div class="message bot bg-green-100 p-3 rounded-lg mb-2 max-w-xs"><b>Bot:</b> Vielen Dank für Ihre Nachricht! Derzeit ist kein Backend-Server verfügbar. Bitte kontaktiere uns direkt.</div>`;
-
-                /* Für echtes Backend (z. B. auf Vercel):
                 try {
-                    const response = await fetch('https://your-backend.vercel.app/chat', {
+                    const response = await fetch('https://chatbot-backend-gd5t.onrender.com/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ message: text }),
@@ -166,17 +107,13 @@
                 } catch (error) {
                     chatbox.innerHTML += `<div class="message bot bg-red-100 p-3 rounded-lg mb-2 max-w-xs"><b>Bot:</b> Server nicht erreichbar.</div>`;
                 }
-                */
 
                 chatbox.scrollTop = chatbox.scrollHeight;
                 input.value = '';
                 input.focus();
             }
 
-            document.getElementById('input').addEventListener('keypress', e => {
-                if (e.key === 'Enter') sendMessage();
-            });
-
+            document.getElementById('input').addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
             window.sendMessage = sendMessage;
         });
     </script>
